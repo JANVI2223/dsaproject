@@ -1,12 +1,14 @@
 // printf("\xDF");//filled square
 #include <iostream>
 #include <vector>
+#include <fstream>
+
 using namespace std;
 class contact
 {
 public:
     string name;
-    long long int phone;
+    string phone;
     string email;
     string city;
 
@@ -62,7 +64,7 @@ public:
         ;
         for (int i = 0; i < contacts.size(); i++)
         {
-            if (contacts[i].phone == ph)
+            if (contacts[i].phone == "ph")
             {
                 contacts.erase(contacts.begin() + i);
                 cout << "\nContact deleted successfully" << endl;
@@ -92,7 +94,7 @@ public:
         bool found = false;
         for (int i = 0; i < contacts.size(); i++)
         {
-            if (contacts[i].phone == number)
+            if (contacts[i].phone == "number")
             {
                 cout << "Name:" << contacts[i].name << endl;
                 cout << "Phone:" << contacts[i].phone << endl;
@@ -152,7 +154,7 @@ public:
         bool found = false;
         for (int i = 0; i < contacts.size(); i++)
         {
-            if (contacts[i].phone == ph)
+            if (contacts[i].phone == "ph")
             {
                 cout << "enter new phone number" << endl;
                 cin >> contacts[i].phone;
@@ -217,13 +219,44 @@ public:
     }
 
     //to save data to file
-    void savedata()
-    {
+    void savedata() {
+        ofstream fout("contacts.txt",ios::app);
+        int n= contacts.size();
+        for(int i=0; i<n; i++){
+            fout<<contacts[i].name<<" | ";
+            fout<<contacts[i].phone<<" | ";
+            fout<<contacts[i].email<<" | ";
+            fout<<contacts[i].city;
+            fout<<endl;
+        }
+        fout.close();
     }
 
     //to load data from file
     void loaddata()
     {
+        ifstream fin("contacts.txt");
+        string msg;
+	    while(getline(fin,msg)){
+		cout<<msg<<endl;
+	    };
+        fin.close();
+    }
+
+    void loadvector()
+    {
+        ifstream fin("contacts.txt");
+         contact temp;
+
+        while (getline(fin, temp.name, '|'))
+        {
+            getline(fin, temp.phone, '|');
+            getline(fin, temp.email, '|');
+            getline(fin, temp.city);
+        contacts.push_back(temp);
+        }
+
+        fin.close();
     }
 
     //to exit from program
@@ -260,7 +293,9 @@ public:
 };
 int main()
 {
+    
     contact obj;
+    obj.loadvector();
     int choice;
     int ch;
     int c;
@@ -272,9 +307,9 @@ int main()
         cout << "3.delete contact" << endl; // done
         cout << "4.update contact" << endl; // done
         cout << "5.search contact" << endl; // done
-        cout << "6.sort contact" << endl;//done
-        cout << "7.save contact to file" << endl;
-        cout << "8.Load Contact from file" << endl;
+        cout << "6.sort contact" << endl;   //done
+        cout << "7.save contact to file" << endl; //done
+        cout << "8.Load Contact from file" << endl; //done
         cout<<"9.add to fav"<<endl;
         cout<<"10.show favourites"<<endl;
         cout<<"11.block contact"<<endl;

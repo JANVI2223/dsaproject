@@ -1,5 +1,5 @@
 // printf("\xDF");//filled square
-//systemcls
+//system(cls)
 #include <iostream>
 #include <vector>
 #include <fstream>

@@ -1,4 +1,5 @@
 // printf("\xDF");//filled square
+//systemcls
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -27,11 +28,13 @@ public:
         cout << "enter city" << endl;
         cin >> c.city;
         contacts.push_back(c);
+        savedata();
         cout << "Contact Saved" << endl;
         cout << "Name:" << c.name << endl;
         cout << "Phone No:" << c.phone << endl;
         cout << "Email:" << c.email << endl;
         cout << "City" << c.city << endl;
+        
         cout << "---contact saved---" << endl;
     }
 
@@ -41,10 +44,10 @@ public:
         for (int i = 0; i < contacts.size(); i++)
         {
             cout << "Contact" << i + 1 << endl;
-            cout << "name" << contacts[i].name << endl;
-            cout << "phone" << contacts[i].phone << endl;
-            cout << "email" << contacts[i].email << endl;
-            cout << "City:" << contacts[i].city << endl;
+            cout << "name: " << contacts[i].name << endl;
+            cout << "phone: " << contacts[i].phone << endl;
+            cout << "email: " << contacts[i].email << endl;
+            cout << "City: " << contacts[i].city << endl;
             cout << endl;
         }
     }
@@ -57,24 +60,24 @@ public:
             cout << "\nNo Contact found" << endl;
             return;
         }
-        long long int ph;
+        string ph;
         cout << "enter phone number to delete" << endl;
         cin >> ph;
         bool found = false;
         ;
         for (int i = 0; i < contacts.size(); i++)
         {
-            if (contacts[i].phone == "ph")
+            if (contacts[i].phone == ph)
             {
                 contacts.erase(contacts.begin() + i);
                 cout << "\nContact deleted successfully" << endl;
                 found = true;
-                break;
+                return;
             }
         }
         if (!found)
         {
-            cout << "no contact found" << endl;
+            cout << "contact not found" << endl;
             return;
         }
     }
@@ -87,22 +90,24 @@ public:
             cout << "Contact empty";
             return;
         }
-        long long int number;
-        cout << "Enter phone no to search";
-        cin >> number;
-        cout << endl;
+        string number;
+        cout << "Enter phone no to search: ";
+        cin>>number;
+        //cout << endl;
         bool found = false;
         for (int i = 0; i < contacts.size(); i++)
         {
-            if (contacts[i].phone == "number")
+            if (number == contacts[i].phone )
             {
                 cout << "Name:" << contacts[i].name << endl;
                 cout << "Phone:" << contacts[i].phone << endl;
                 cout << "Email" << contacts[i].email << endl;
                 cout << "City:" << contacts[i].city << endl;
                 found = true;
+                return;
             }
         }
+
         if (!found)
         {
             cout << "contact not found" << endl;
@@ -120,7 +125,7 @@ public:
         }
         string n;
         bool found = false;
-        cout<<"Enter name to found!!!!"<<endl;
+        cout<<"Enter name to find: ";
         cin>>n;
         for (int i = 0; i < contacts.size(); i++)
         {
@@ -220,12 +225,12 @@ public:
 
     //to save data to file
     void savedata() {
-        ofstream fout("contacts.txt",ios::app);
+        ofstream fout("contacts.txt");
         int n= contacts.size();
         for(int i=0; i<n; i++){
-            fout<<contacts[i].name<<" | ";
-            fout<<contacts[i].phone<<" | ";
-            fout<<contacts[i].email<<" | ";
+            fout<<contacts[i].name<<"|";
+            fout<<contacts[i].phone<<"|";
+            fout<<contacts[i].email<<"|";
             fout<<contacts[i].city;
             fout<<endl;
         }
@@ -234,16 +239,6 @@ public:
 
     //to load data from file
     void loaddata()
-    {
-        ifstream fin("contacts.txt");
-        string msg;
-	    while(getline(fin,msg)){
-		cout<<msg<<endl;
-	    };
-        fin.close();
-    }
-
-    void loadvector()
     {
         ifstream fin("contacts.txt");
          contact temp;
@@ -257,6 +252,12 @@ public:
         }
 
         fin.close();
+        // ifstream fin("contacts.txt");
+        // string msg;
+	    // while(getline(fin,msg)){
+		// cout<<msg<<endl;
+	    // };
+        // fin.close();
     }
 
     //to exit from program
@@ -295,7 +296,7 @@ int main()
 {
     
     contact obj;
-    obj.loadvector();
+    obj.loaddata();
     int choice;
     int ch;
     int c;

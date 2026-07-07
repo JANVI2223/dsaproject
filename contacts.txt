@@ -1,3 +1,1 @@
-yashvi | 7206032917 | yashvi@gmail.com | panipat
-janvi | 1234567890 | janvi@gmail.com | panipat
-sudiksha | 1234267890 | diksha@gmail.com | panipat
+janvi|1234567890|janvi@gmail.com|panipat

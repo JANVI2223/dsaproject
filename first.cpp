@@ -348,11 +348,13 @@ public:
 
     }
     //lock contact
-    string pass;
+    
     void lockcontact(){
+        string pass;
         string ph;
         cout<<"set password to unlock: ";
         cin>>pass;
+        savePassword(pass);
         cout<<"enter phone number to lock: "<<endl;
         cin>>ph;
         for(int i=0; i<contacts.size(); i++){
@@ -380,6 +382,9 @@ public:
         string ps;
         cout<<"enter password to unlock: ";
         cin>>ps;
+        ifstream fin("password.txt");
+            string pass;
+            getline(fin, pass);
         if(ps == pass){
 
         int n= contacts.size();
@@ -401,6 +406,27 @@ public:
          else{
             cout<<"wrong password."<<endl;
          }
+         fin.close();
+    }
+
+    //update password
+    void updatePassword(){
+        string ps;
+        string p;
+        cout << "enter previous password: ";
+        cin >> ps;
+        cout<< endl;
+        ifstream fin("password.txt");
+            string pass;
+            getline(fin, pass);
+            if (pass ==ps)
+            {
+                cout<<"enter new password: ";
+                cin>>p;
+                savePassword(p);
+                cout<<endl;
+                cout<<"password updated!"<<endl;
+            }
 
     }
 };
@@ -423,12 +449,13 @@ int main()
         cout << "6.sort contact" << endl;   //done
         cout << "7.save contact to file" << endl; //done
         cout << "8.Load Contact from file" << endl; //done
-        cout<<"9.add to fav"<<endl;
-        cout<<"10.show favourites"<<endl;
-        cout<<"11.block contact"<<endl;
-        cout<<"12.display all block contact"<<endl;
-        cout<<"13.lock contact"<<endl;
-        cout<<"14.display locked contact"<<endl;
+        cout<<"9.add to fav"<<endl;//done
+        cout<<"10.show favourites"<<endl;//done
+        cout<<"11.block contact"<<endl;//done
+        cout<<"12.display all block contact"<<endl;//done
+        cout<<"13.lock contact"<<endl;//done
+        cout<<"14.display locked contact"<<endl;//done
+        cout<<"15.update password"<<endl;//done
         cout << "0.exit" << endl; // done
         cout << "enter choice" << endl;
         cin >> choice;
@@ -513,6 +540,9 @@ int main()
         }
         else if(choice==14){
             obj.showlock();
+        }
+        else if(choice == 15){
+            obj.updatePassword();
         }
         else if (choice == 0)
         {

@@ -1,5 +1,3 @@
-janvi|1234567890|janvi@gmail.com|panipat
 yashvi|7206032917|yashvi@gmail.com|panipat
 sudiksha|705630003|diksha@gmail.com|samalkha
-janvicd|"c:\Users\Dell\dsaproject\"|;|if
 Janvi|9034296901|janvimangla49@gmail.com|Assandh

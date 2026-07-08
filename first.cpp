@@ -72,10 +72,9 @@ public:
                 contacts.erase(contacts.begin() + i);
                 cout << "\nContact deleted successfully" << endl;
                 found = true;
-                return;
             }
         }
-        loaddata();
+        savedata();
         if (!found)
         {
             cout << "contact not found" << endl;

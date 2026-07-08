@@ -75,6 +75,7 @@ public:
                 return;
             }
         }
+        loaddata();
         if (!found)
         {
             cout << "contact not found" << endl;

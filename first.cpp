@@ -12,28 +12,28 @@ public:
     string phone;
     string email;
     string city;
-
+    string status= "0";
     vector<contact> contacts;
 
     // to add contact
     void addcontact()
     {
         contact c;
-        cout << " enter name" << endl;
-        cin >> c.name;
-        cout << " enter phone number" << endl;
-        cin >> c.phone;
-        cout << "enter email" << endl;
-        cin >> c.email;
-        cout << "enter city" << endl;
-        cin >> c.city;
+        cout << " enter name: ";
+        cin >> c.name; cout<<"\n";
+        cout << " enter phone number: ";
+        cin >> c.phone; cout<<"\n";
+        cout << "enter email: ";
+        cin >> c.email; cout<<"\n";
+        cout << "enter city: ";
+        cin >> c.city; cout<<"\n";
         contacts.push_back(c);
         savedata();
         cout << "Contact Saved" << endl;
         cout << "Name:" << c.name << endl;
         cout << "Phone No:" << c.phone << endl;
         cout << "Email:" << c.email << endl;
-        cout << "City" << c.city << endl;
+        cout << "City: " << c.city << endl;
         
         cout << "---contact saved---" << endl;
     }
@@ -99,10 +99,10 @@ public:
         {
             if (number == contacts[i].phone )
             {
-                cout << "Name:" << contacts[i].name << endl;
-                cout << "Phone:" << contacts[i].phone << endl;
-                cout << "Email" << contacts[i].email << endl;
-                cout << "City:" << contacts[i].city << endl;
+                cout << "Name: " << contacts[i].name << endl;
+                cout << "Phone: " << contacts[i].phone << endl;
+                cout << "Email: " << contacts[i].email << endl;
+                cout << "City: " << contacts[i].city << endl;
                 found = true;
                 return;
             }
@@ -131,10 +131,10 @@ public:
         {
             if (contacts[i].name == n)
             {
-                cout << "name:" << contacts[i].name << endl;
-                cout << "phone:" << contacts[i].phone << endl;
-                cout << "email:" << contacts[i].email << endl;
-                cout << "City:" << contacts[i].city << endl;
+                cout << "name: " << contacts[i].name << endl;
+                cout << "phone: " << contacts[i].phone << endl;
+                cout << "email: " << contacts[i].email << endl;
+                cout << "City: " << contacts[i].city << endl;
                 found = true;
             }
         }
@@ -153,13 +153,13 @@ public:
             cout << "\nNo contact found" << endl;
             return;
         }
-        long long int ph;
+        string ph;
         cout << "enter phone number to update" << endl;
         cin >> ph;
         bool found = false;
         for (int i = 0; i < contacts.size(); i++)
         {
-            if (contacts[i].phone == "ph")
+            if (contacts[i].phone ==ph)
             {
                 cout << "enter new phone number" << endl;
                 cin >> contacts[i].phone;
@@ -169,6 +169,7 @@ public:
                 cin >> contacts[i].email;
                 cout << "enter new city" << endl;
                 cin >> contacts[i].city;
+                savedata();
                 cout << "----contact updated successfully---" << endl;
                 found = true;
             }
@@ -192,12 +193,13 @@ public:
                 }
             }
         }
+        savedata();
         for (int i = 0; i < contacts.size(); i++)
         {
             cout << "Name:" << contacts[i].name << endl;
             cout << "Phone:" << contacts[i].phone << endl;
             cout << "Email" << contacts[i].email << endl;
-            cout << "City:" << contacts[i].city << endl;
+            cout << "City:" << contacts[i].city << endl<<endl;
         }
     }
 
@@ -214,6 +216,7 @@ public:
                 }
             }
         }
+        savedata();
         for (int i = 0; i < contacts.size(); i++)
         {
             cout << "Name:" << contacts[i].name << endl;
@@ -231,7 +234,8 @@ public:
             fout<<contacts[i].name<<"|";
             fout<<contacts[i].phone<<"|";
             fout<<contacts[i].email<<"|";
-            fout<<contacts[i].city;
+            fout<<contacts[i].city<<"|";
+            fout<<contacts[i].status;
             fout<<endl;
         }
         fout.close();
@@ -247,17 +251,14 @@ public:
         {
             getline(fin, temp.phone, '|');
             getline(fin, temp.email, '|');
-            getline(fin, temp.city);
-        contacts.push_back(temp);
+            getline(fin, temp.city, '|');
+            getline(fin, temp.status);
+            contacts.push_back(temp);
+            cout<<"0";
         }
 
         fin.close();
-        // ifstream fin("contacts.txt");
-        // string msg;
-	    // while(getline(fin,msg)){
-		// cout<<msg<<endl;
-	    // };
-        // fin.close();
+        
     }
 
     //to exit from program
@@ -269,27 +270,138 @@ public:
 
     //to add to fav
     void addfav(){
+        string ph;
+        cout<<"enter favorite phone num: ";
+        cin>>ph;
+        for(int i=0; i<contacts.size(); i++){
+            if(contacts[i].phone == ph){
+                contacts[i].status = "1";
+                savedata();
+                cout<<"added to favorites!"<<endl;
+                return;
+            }
+        }
+            cout<<"contact not found."<<endl;
+            return;
+        
 
     }
 
     //to display fav
     void showfav(){
-
+        
+        int n= contacts.size();
+        for(int i=0; i<n; i++){
+            if(contacts[i].status == "1"){
+            cout << "Contact" << i + 1 << endl;
+            cout << "name: " << contacts[i].name << endl;
+            cout << "phone: " << contacts[i].phone << endl;
+            cout << "email: " << contacts[i].email << endl;
+            cout << "City: " << contacts[i].city << endl;
+            cout << endl;
+                return;
+            }
+        }
+        
+            cout<<"favorites not found.";
+            return;
+        
     }
 
     //block contact
     void block(){
+        string ph;
+        cout<<"enter phone number to block: ";
+        cin>>ph;
+        for(int i=0; i<contacts.size(); i++){
+            if(contacts[i].phone == ph){
+                contacts[i].status = "2";
+                savedata();
+                cout<<"added to blocked list"<<endl;
+                return;
+            }
+        }
+        
+            cout<<"contact not found."<<endl;
+            return;
+        
 
     }
 
     //to display block contact
     void showblock(){
+        int n= contacts.size();
+        for(int i=0; i<n; i++){
+            if(contacts[i].status == "2"){
+            cout << "Contact" << i + 1 << endl;
+            cout << "name: " << contacts[i].name << endl;
+            cout << "phone: " << contacts[i].phone << endl;
+            cout << "email: " << contacts[i].email << endl;
+            cout << "City: " << contacts[i].city << endl;
+            cout << endl;
+                return;
+            }
+        }
+        
+            cout<<"no blocked contacts found.";
+            return;
 
     }
-
     //lock contact
+    string pass;
     void lockcontact(){
-         
+        string ph;
+        cout<<"set password to unlock: ";
+        cin>>pass;
+        cout<<"enter phone number to lock: "<<endl;
+        cin>>ph;
+        for(int i=0; i<contacts.size(); i++){
+            if(contacts[i].phone == ph){
+                contacts[i].status = "3";
+                savedata();
+                cout<<"added to locked list"<<endl;
+                return;
+            }
+        }
+            cout<<"contact not found."<<endl;
+            return;    
+    }
+
+    //to save the password;
+    void savePassword(string pass)
+    {
+    ofstream fout("password.txt");
+    fout << pass;
+    fout.close();
+    }
+
+    //display all locked contacts.
+    void showlock(){
+        string ps;
+        cout<<"enter password to unlock: ";
+        cin>>ps;
+        if(ps == pass){
+
+        int n= contacts.size();
+        for(int i=0; i<n; i++){
+            
+            if(contacts[i].status == "3"){
+                    cout << "Contact" << i + 1 << endl;
+                    cout << "name: " << contacts[i].name << endl;
+                    cout << "phone: " << contacts[i].phone << endl;
+                    cout << "email: " << contacts[i].email << endl;
+                    cout << "City: " << contacts[i].city << endl;
+                    cout << endl;
+                    return;
+                }
+            }
+            cout<<"no locked contacts found.";
+            return;
+         }
+         else{
+            cout<<"wrong password."<<endl;
+         }
+
     }
 };
 int main()
@@ -338,9 +450,9 @@ int main()
         }
         else if (choice == 5)
         {
-            cout << "choose option" << endl;
-            cout << "1.Search by phone number" << endl;
-            cout << "2.Search by name" << endl;
+            cout << "choose a number: " << endl;
+            cout << "1= Search by phone number" << endl;
+            cout << "2= Search by name" << endl;
             cin >> ch;
             if (ch == 1)
             {
@@ -383,22 +495,24 @@ int main()
             obj.loaddata();
         }
         else if(choice==9){
+            obj.addfav();
 
         }
         else if(choice==10){
+            obj.showfav();
 
         }
         else if(choice==11){
-
+            obj.block();
         }
         else if(choice==12){
-
+            obj.showblock();
         }
         else if(choice==13){
-
+            obj.lockcontact();
         }
         else if(choice==14){
-            
+            obj.showlock();
         }
         else if (choice == 0)
         {

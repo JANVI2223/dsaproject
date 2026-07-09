@@ -1,4 +1,4 @@
-yashvi|7206032917|yashvi@gmail.com|panipat|1
-sudiksha|1234567890|racoonface@me.com|noobcity|3
-christopher|1111111111|crime@gmail.com|new|2
-Janvi|9034296901|janvimangla49@gmail.com|Assandh|0
+yashvi|7206032917|kutti.com|swiftty|1|0|0
+sudiksha|1234567890|sudiksha@gmail|sonipat|1|0|0
+janvi|9034296901|janvimangla@gmail.com|asaandh|1|0|1
+christopher|0987654321|crymeariver@gmail.com|dil|0|1|0

@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <windows.h>
+#include<limits>
 #include <iomanip>
 #include <algorithm>
 #include <cstdlib>
@@ -270,19 +271,21 @@ public:
         cout << "╚══════════════════════════════════════╝\n";
 
         cout << "  Enter Name : ";
-        cin >> n; // <-- INPUT IS HERE
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, n); // <-- INPUT IS HERE
         // cout << " Enter Name to Find: ";
         // cin >> n;
         cout << endl;
         for (int i = 0; i < contacts.size(); i++)
         {
-            if (contacts[i].lock)
+            
+            if (contacts[i].name == n)
+            {
+                if (contacts[i].lock)
             {
                 cout << "Contact Locked";
                 return;
             }
-            if (contacts[i].name == n)
-            {
                 cout << "╔══════════════════════════════════════════════════╗\n";
                 cout << "║                     FOUND                        ║\n";
                 cout << "╚══════════════════════════════════════════════════╝\n";
@@ -316,6 +319,7 @@ public:
                 // cout << " Email: " << contacts[i].email << endl;
                 // cout << " City: " << contacts[i].city << endl;
                 found = true;
+                break;
             }
         }
         if (!found)
@@ -403,6 +407,7 @@ public:
             return;
         }
         string ph;
+        string p;
         cout << endl;
         // cout << " Enter Name to Update: ";
         // cin >> ph;
@@ -411,7 +416,8 @@ public:
         cout << "║             CURRENT NAME             ║\n";
         cout << "╚══════════════════════════════════════╝\n";
         cout << "  Enter Current Name : ";
-        cin >> ph; // <-- INPUT IS HERE
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin,ph); // <-- INPUT IS HERE
 
         for (int i = ph.length(); i < 17; i++)
         {
@@ -431,9 +437,9 @@ public:
                 cout << "╚══════════════════════════════════════╝\n";
 
                 cout << "  Enter New Name : ";
-                cin >> ph;
-                contacts[i].name = ph;
-                for (int i = ph.length(); i < 18; i++)
+                getline(cin,p);
+                contacts[i].name = p;
+                for (int j= p.length(); j < 18; j++)
                 {
                     cout << " ";
                 }
@@ -516,7 +522,7 @@ public:
         cout << "║               OLD CITY               ║\n";
         cout << "╚══════════════════════════════════════╝\n";
         cout << " Enter City to Update: ";
-        cin >> ph;
+        getline(cin>>ws,ph);
         bool found = false;
         for (int i = 0; i < contacts.size(); i++)
         {
@@ -529,7 +535,7 @@ public:
                 cout << "╚══════════════════════════════════════╝\n";
                 string newcity;
                 cout << " Enter New City: ";
-                cin >> newcity;
+                getline(cin>>ws,newcity);
                 contacts[i].city = newcity;
                 savedata();
                 cout << endl;
@@ -732,7 +738,7 @@ public:
                 // cout << " Email: " << contacts[i].email << endl;
                 // cout << " City: " << contacts[i].city << endl;
                 cout << endl;
-                
+
                 // return;
             }
         }

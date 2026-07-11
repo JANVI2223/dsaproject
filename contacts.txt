@@ -1,4 +1,2 @@
-Moksh|8034286801|mokshmangla|assandh|0|1|0
-janvi|9034296901|janvimangla@gmail.com|asaandh|1|0|1
-sudiksha|1234567890|sudiksha@gmail|sonipat|1|0|0
-yashvi|7206032917|kutti.com|swiftty|1|0|0
+we|23|sds|fds|1|1|1
+chris|123|345|wef|1|0|1

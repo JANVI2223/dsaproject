@@ -4,6 +4,8 @@
 #include <fstream>
 #include <windows.h>
 #include <iomanip>
+#include <algorithm>
+#include <cstdlib>
 using namespace std;
 class contact
 {
@@ -28,7 +30,9 @@ public:
         cout << "╚══════════════════════════════════════╝\n";
 
         cout << " Enter Name         : ";
-        cin >> c.name;
+        // cin >> c.name;
+        cin.ignore();
+        getline(cin, c.name);
 
         cout << " Enter Phone Number : ";
         cin >> c.phone;
@@ -37,7 +41,9 @@ public:
         cin >> c.email;
 
         cout << " Enter City         : ";
-        cin >> c.city;
+        // cin >> c.city;
+        cin.ignore();
+        getline(cin, c.city);
 
         system("cls"); // optional
         cout << "╔══════════════════════════════════════╗\n";
@@ -78,7 +84,7 @@ public:
     // TO VIEW CONTACT
     void viewcontact()
     {
-        int c = 1;
+
         for (int i = 0; i < contacts.size(); i++)
         {
             if (contacts[i].lock == true)
@@ -117,7 +123,6 @@ public:
             cout << "╚══════════════════════════════════════════════════╝\n";
         }
         cout << endl;
-        c++;
     }
 
     // TO DELETE CONTACT
@@ -159,7 +164,11 @@ public:
                 break;
             }
         }
-        savedata();
+        if (found)
+        {
+            savedata();
+        }
+
         if (!found)
         {
             cout << endl;
@@ -195,6 +204,11 @@ public:
         bool found = false;
         for (int i = 0; i < contacts.size(); i++)
         {
+            if (contacts[i].lock)
+            {
+                cout << "Contact Locked";
+                return;
+            }
             if (number == contacts[i].phone)
             {
                 cout << "╔══════════════════════════════════════════════════╗\n";
@@ -255,13 +269,18 @@ public:
         cout << "║            SEARCH BY NAME            ║\n";
         cout << "╚══════════════════════════════════════╝\n";
 
-        cout << "  Enter Phone number : ";
+        cout << "  Enter Name : ";
         cin >> n; // <-- INPUT IS HERE
         // cout << " Enter Name to Find: ";
         // cin >> n;
         cout << endl;
         for (int i = 0; i < contacts.size(); i++)
         {
+            if (contacts[i].lock)
+            {
+                cout << "Contact Locked";
+                return;
+            }
             if (contacts[i].name == n)
             {
                 cout << "╔══════════════════════════════════════════════════╗\n";
@@ -362,6 +381,7 @@ public:
                 cout << "║     CONTACT SUCCESSFULLY UPDATED     ║\n";
                 cout << "╚══════════════════════════════════════╝\n";
                 found = true;
+                break;
             }
         }
         if (!found)
@@ -461,14 +481,15 @@ public:
                 cout << "╔══════════════════════════════════════╗\n";
                 cout << "║             UPDATE EMAIL             ║\n";
                 cout << "╚══════════════════════════════════════╝\n";
-
+                string p;
                 cout << "  Enter New Email : ";
-                cin >> contacts[i].email;
-                contacts[i].email = ph;
+                cin >> p;
+                contacts[i].email = p;
                 savedata();
                 cout << endl;
                 cout << "----Contact Updated Successfully---" << endl;
                 found = true;
+                break;
             }
         }
         if (!found)
@@ -506,14 +527,15 @@ public:
                 cout << "╔══════════════════════════════════════╗\n";
                 cout << "║              UPDATE CITY             ║\n";
                 cout << "╚══════════════════════════════════════╝\n";
-
+                string newcity;
                 cout << " Enter New City: ";
-                cin >> contacts[i].city;
-                contacts[i].city = ph;
+                cin >> newcity;
+                contacts[i].city = newcity;
                 savedata();
                 cout << endl;
                 cout << "----Contact Updated Successfully---" << endl;
                 found = true;
+                break;
             }
         }
         if (!found)
@@ -587,7 +609,12 @@ public:
     // TO LOAD DATA FROM FILE
     void loaddata()
     {
+        contacts.clear();
         ifstream fin("contacts.txt");
+        if (!fin)
+        {
+            return;
+        }
         contact temp;
         string s1, s2, s;
         while (getline(fin, temp.name, '|'))
@@ -638,6 +665,11 @@ public:
             // cout << "yes";
             if (contacts[i].phone == ph)
             {
+                if (contacts[i].fav)
+                {
+                    cout << "Already in Favourite List." << endl;
+                    return;
+                }
                 contacts[i].fav = true;
                 savedata();
                 cout << endl;
@@ -646,6 +678,9 @@ public:
                 cout << "╚══════════════════════════════════════╝\n";
                 return;
             }
+            // cout << endl;
+            // cout << " Contact Not Found" << endl;
+            // return;
         }
         cout << endl;
         cout << " Contact Not Found" << endl;
@@ -655,12 +690,13 @@ public:
     // TO DISPLAY FAVOURITE
     void showfav()
     {
-        int fl = 0;
+        bool found = false;
         int n = contacts.size();
         for (int i = 0; i < n; i++)
         {
-            if (contacts[i].fav == true)
+            if (contacts[i].fav && !contacts[i].lock)
             {
+                found = true;
                 cout << endl;
                 cout << "╔══════════════════════════════════════════════════╗\n";
                 cout << "║                FAVOURITE CONTACT                 ║\n";
@@ -696,14 +732,16 @@ public:
                 // cout << " Email: " << contacts[i].email << endl;
                 // cout << " City: " << contacts[i].city << endl;
                 cout << endl;
-                fl = 1;
+                
                 // return;
             }
         }
 
-        if (fl == 0)
+        if (!found)
+        {
             cout << endl;
-        cout << " Favorites Not Found.";
+            cout << " Favorites Not Found.";
+        }
     }
 
     // BLOCK CONTACT
@@ -784,8 +822,10 @@ public:
             }
         }
         if (f == 0)
+        {
             cout << endl;
-        cout << " No Blocked Contacts Found" << endl;
+            cout << " No Blocked Contacts Found" << endl;
+        }
     }
 
     // LOCK CONTACT
@@ -840,7 +880,7 @@ public:
         getline(fin, pass);
         if (ps == pass)
         {
-
+            bool found = false;
             int n = contacts.size();
             for (int i = 0; i < n; i++)
             {
@@ -882,12 +922,13 @@ public:
                     // cout << " Email: " << contacts[i].email << endl;
                     // cout << " City: " << contacts[i].city << endl;
                     cout << endl;
-                    return;
+                    found = true;
                 }
             }
-            cout << endl;
-            cout << " No Locked Contacts Found";
-            return;
+            if (found == false)
+            {
+                cout << "No Contact Found" << endl;
+            }
         }
         else
         {

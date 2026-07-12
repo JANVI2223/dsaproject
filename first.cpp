@@ -79,7 +79,7 @@ public:
         cout << "Email:" << c.email << endl;
         cout << "City: " << c.city << endl;
         cout << endl;
-        cout << "-----Contact Saved-----" << endl;
+        cout << "-----------------------" << endl;
     }
 
     // TO VIEW CONTACT
@@ -972,6 +972,81 @@ public:
             cout << " Password Updated!" << endl;
         }
     }
+    //unlock function
+    void unlock(){
+        string ps;
+        cout << " Enter Password to Unlock: ";
+        cin >> ps;
+        ifstream fin("password.txt");
+        string pass;
+        getline(fin, pass);
+        if (ps == pass)
+        {
+        string ph;
+        cout << " Enter Phone Number to Unlock: ";
+        cin >> ph;
+        for (int i = 0; i < contacts.size(); i++)
+        {
+            if (contacts[i].phone == ph)
+            {
+                contacts[i].lock = false;
+                savedata();
+                cout << endl;
+                cout << "Removed from Locked List" << endl;
+                return;
+            }
+        }
+        }
+        else{
+            cout<<"Incorrect password.";
+        }
+        cout << endl;
+        cout << " Contact Not Found" << endl;
+        return;
+
+    }
+    //unblock function
+    void unblock(){
+        string ph;
+        cout << " Enter Phone Number to Unblock: ";
+        cin >> ph;
+        for (int i = 0; i < contacts.size(); i++)
+        {
+            if (contacts[i].phone == ph)
+            {
+                contacts[i].block = false;
+                savedata();
+                cout << endl;
+                cout << "Removed from Blocked List" << endl;
+                return;
+            }
+        }
+        cout << endl;
+        cout << " Contact Not Found" << endl;
+        return;
+
+    }
+    // unfav function
+    void unfav(){
+        string ph;
+        cout << " Enter Phone Number to Remove from favories: ";
+        cin >> ph;
+        for (int i = 0; i < contacts.size(); i++)
+        {
+            if (contacts[i].phone == ph)
+            {
+                contacts[i].fav = false;
+                savedata();
+                cout << endl;
+                cout << "Removed from Favorites List" << endl;
+                return;
+            }
+        }
+        cout << endl;
+        cout << " Contact Not Found" << endl;
+        return;
+
+    }
 };
 int main()
 {
@@ -1006,7 +1081,10 @@ int main()
         cout << "┃ 13. Lock Contact                       ┃" << endl; // done
         cout << "┃ 14. Display Locked Contact             ┃" << endl; // done
         cout << "┃ 15. Update Password                    ┃" << endl; // done
-        cout << "┃ 0.  Exit                               ┃" << endl;
+        cout << "┃ 16. Remove from favorites              ┃" << endl; // done
+        cout << "┃ 17. Unblock Number                     ┃" << endl; // done
+        cout << "┃ 18. Unlock Number                      ┃" << endl; // done
+        cout << "┃ 0.  Exit                               ┃" << endl; // done
         cout << "┃                                        ┃" << endl;
         cout << "┃ Enter Choice: ";
         cin >> choice;
@@ -1223,6 +1301,18 @@ int main()
         else if (choice == 15)
         {
             obj.updatePassword();
+        }
+        else if (choice == 16)
+        {
+            obj.unfav();
+        }
+        else if (choice == 17)
+        {
+            obj.unblock();
+        }
+        else if (choice == 18)
+        {
+            obj.unlock();
         }
         else if (choice == 0)
         {

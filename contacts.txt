@@ -1,4 +1,3 @@
-chris cc|000|chris|new york|1|0|1
-janvi|9034296901|janvimangla49@gmail.com|assandh|1|0|1
-priya|867675|hhh|safidon assandh|0|0|0
-yashvi|1234567890|sds2gmail.com|panipat|1|1|1
+ruby|1|ruby@gmail.com|london|0|0|0
+evelyn|2|eve@gmail.com|singapore|0|0|0
+janvi|3|janvi@gmail.com|asandh|0|0|0

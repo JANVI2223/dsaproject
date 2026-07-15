@@ -1,3 +1,10 @@
-ruby|1|ruby@gmail.com|london|0|0|0
-evelyn|2|eve@gmail.com|singapore|0|0|0
-janvi|3|janvi@gmail.com|asandh|0|0|0
+yashvi|7206032917|yasss@gmail.com|panipat|0|1|0
+sombr|2342235678|homewrecker@gmail.com|london|0|1|1
+priyanka chopra jonas|7461747368|groomer@gmail.com|los angeles|0|1|0
+olivia rodrigo|2134123413|thecure@gmail.com|texas|0|0|0
+nick jonas|0987653456|groomed@gmail.com|mumbai|0|0|0
+joe jonas|4567845362|jonasbrothers@gmail.com|los angeles|0|0|0
+jesse|1234563214|pinkman@gmail.com|los angeles|1|0|0
+janvi|9034296901|janvimangla49@gmail.com|assandh|1|0|0
+henry|0987654321|vecna@gmail.com|upside down|1|0|0
+danny|2345678953|danny@gmail.com|tokyo|1|0|0

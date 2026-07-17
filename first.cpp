@@ -307,13 +307,14 @@ public:
         bool found = false;
         for (int i = 0; i < contacts.size(); i++)
         {
-            if (contacts[i].lock)
+            
+            if (number == contacts[i].phone)
+            {
+                if (contacts[i].lock)
             {
                 cout << "Contact Locked";
                 return;
             }
-            if (number == contacts[i].phone)
-            {
                 setColor(9);
                 cout << "╔══════════════════════════════════════════════════╗\n";
                 cout << "║";

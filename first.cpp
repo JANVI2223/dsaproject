@@ -307,14 +307,14 @@ public:
         bool found = false;
         for (int i = 0; i < contacts.size(); i++)
         {
-            
+
             if (number == contacts[i].phone)
             {
                 if (contacts[i].lock)
-            {
-                cout << "Contact Locked";
-                return;
-            }
+                {
+                    cout << "Contact Locked";
+                    return;
+                }
                 setColor(9);
                 cout << "╔══════════════════════════════════════════════════╗\n";
                 cout << "║";
@@ -897,7 +897,7 @@ public:
 
             // Blue border
             setColor(9);
-            cout << "     ║\n";
+            cout << " ║\n";
             cout << "╚══════════════════════════════════════════════════╝\n";
             setColor(9);
             cout << "║ ";
@@ -978,7 +978,7 @@ public:
 
             // Blue border
             setColor(9);
-            cout << "     ║\n";
+            cout << "  ║\n";
             cout << "╚══════════════════════════════════════════════════╝\n";
             setColor(9);
             cout << "║ ";
@@ -1378,7 +1378,7 @@ public:
                 // Bottom border
                 setColor(9);
                 cout << "╚══════════════════════════════════════════════════╝\n";
-                
+
                 // cout << " Contact: " << i + 1 << endl;
                 // cout << " Name: " << contacts[i].name << endl;
                 // cout << " Phone: " << contacts[i].phone << endl;
@@ -1402,11 +1402,39 @@ public:
     {
         string pass;
         string ph;
+        system("cls");
         cout << endl;
-        cout << " Set Password for lock: ";
+        setColor(9);
+        cout << "╔══════════════════════════════════════════════════╗\n";
+        cout << "║";
+
+        // White heading
+        setColor(15);
+        cout << "                   SET PASSWORD       ";
+
+        // Blue border
+        setColor(9);
+        cout << "            ║\n";
+        cout << "╚══════════════════════════════════════════════════╝\n";
+        setColor(15);
+        cout << " Enter Password: ";
         cin >> pass;
         savePassword(pass);
         cout << endl;
+        setColor(9);
+        cout << "╔══════════════════════════════════════════════════╗\n";
+        cout << "║";
+
+        // White heading
+        setColor(15);
+        cout << "                   PHONE NUMBER       ";
+
+        // Blue border
+        setColor(9);
+        cout << "            ║\n";
+        cout << "╚══════════════════════════════════════════════════╝\n";
+
+        setColor(15);
         cout << " Enter Phone Number to Lock: ";
         cin >> ph;
         for (int i = 0; i < contacts.size(); i++)
@@ -1416,12 +1444,12 @@ public:
                 contacts[i].lock = true;
                 savedata();
                 cout << endl;
-                cout << " Added to Locked List" << endl;
+                cout << "----------ADDED TO LOCKED LIST-------" << endl;
                 return;
             }
         }
         cout << endl;
-        cout << " Contact Not Found" << endl;
+        cout << "-------Contact Not Found---------" << endl;
         return;
     }
 
@@ -1439,9 +1467,20 @@ public:
         string ps;
         cout << endl;
 
+        setColor(9);
         cout << "╔══════════════════════════════════════════════════╗\n";
-        cout << "║                    PASSWORD                      ║\n";
+        cout << "║";
+
+        // White heading
+        setColor(15);
+        cout << "                    PASSWORD       ";
+
+        // Blue border
+        setColor(9);
+        cout << "               ║\n";
         cout << "╚══════════════════════════════════════════════════╝\n";
+
+        setColor(15);
         cout << " Enter Password to Unlock: ";
         cin >> ps;
         ifstream fin("password.txt");
@@ -1459,33 +1498,69 @@ public:
                 {
 
                     cout << endl;
+                    setColor(9);
                     cout << "╔══════════════════════════════════════════════════╗\n";
-                    cout << "║                 LOCKED CONTACTS                  ║\n";
+                    cout << "║";
+
+                    // White heading
+                    setColor(15);
+                    cout << "                  LOCKED CONTACTS             ";
+
+                    // Blue border
+                    setColor(9);
+                    cout << "    ║\n";
                     cout << "╚══════════════════════════════════════════════════╝\n";
-                    cout << "║ "
-                         << left << setw(15) << "👤 Name"
-                         << "    : "
-                         << left << setw(24) << contacts[i].name
-                         << "      ║\n";
 
-                    cout << "║ "
-                         << left << setw(15) << "📞 Phone Number"
+                    // setColor(15);
+                    setColor(9);
+                    cout << "║ ";
+
+                    setColor(15);
+                    cout << left << setw(15) << "👤 Name"
+                         << "    : "
+                         << left << setw(24) << contacts[i].name;
+
+                    setColor(9);
+                    cout << "      ║\n";
+
+                    // ---------- Phone ----------
+                    setColor(9);
+                    cout << "║ ";
+
+                    setColor(15);
+                    cout << left << setw(15) << "📞 Phone Number"
                          << "  : "
-                         << left << setw(27) << contacts[i].phone
-                         << "   ║\n";
+                         << left << setw(27) << contacts[i].phone;
 
-                    cout << "║ "
-                         << left << setw(15) << "📧 Email"
+                    setColor(9);
+                    cout << "   ║\n";
+
+                    // ---------- Email ----------
+                    setColor(9);
+                    cout << "║ ";
+
+                    setColor(15);
+                    cout << left << setw(15) << "📧 Email"
                          << "    : "
-                         << left << setw(30) << contacts[i].email
-                         << "║\n";
+                         << left << setw(30) << contacts[i].email;
 
-                    cout << "║ "
-                         << left << setw(15) << "📍 City"
+                    setColor(9);
+                    cout << "║\n";
+
+                    // ---------- City ----------
+                    setColor(9);
+                    cout << "║ ";
+
+                    setColor(15);
+                    cout << left << setw(15) << "📍 City"
                          << "    : "
-                         << left << setw(27) << contacts[i].city
-                         << "   ║\n";
+                         << left << setw(27) << contacts[i].city;
 
+                    setColor(9);
+                    cout << "   ║\n";
+
+                    // Bottom border
+                    setColor(9);
                     cout << "╚══════════════════════════════════════════════════╝\n";
                     // cout << " Contact: " << i + 1 << endl;
                     // cout << " Name: " << contacts[i].name << endl;
@@ -1498,13 +1573,13 @@ public:
             }
             if (found == false)
             {
-                cout << "No Contact Found" << endl;
+                cout << "---------No Contact Found-------" << endl;
             }
         }
         else
         {
             cout << endl;
-            cout << " Wrong Password" << endl;
+            cout << "------Wrong Password-------" << endl;
         }
         fin.close();
     }
@@ -1515,9 +1590,19 @@ public:
         string ps;
         string p;
         cout << endl;
+        setColor(9);
         cout << "╔══════════════════════════════════════════════════╗\n";
-        cout << "║                   OLD PASSWORD                   ║\n";
+        cout << "║";
+
+        // White heading
+        setColor(15);
+        cout << "                    OLD PASSWORD             ";
+
+        // Blue border
+        setColor(9);
+        cout << "     ║\n";
         cout << "╚══════════════════════════════════════════════════╝\n";
+        setColor(15);
         cout << " Enter Previous Password: ";
         cin >> ps;
         cout << endl;
@@ -1527,25 +1612,46 @@ public:
         if (pass == ps)
         {
             cout << endl;
+            setColor(9);
             cout << "╔══════════════════════════════════════════════════╗\n";
-            cout << "║                   NEW PASSWORD                   ║\n";
+            cout << "║";
+
+            // White heading
+            setColor(15);
+            cout << "                   NEW PASSWORD             ";
+
+            // Blue border
+            setColor(9);
+            cout << "      ║\n";
             cout << "╚══════════════════════════════════════════════════╝\n";
+            setColor(15);
             cout << " Enter New Password: ";
             cin >> p;
             savePassword(p);
             cout << endl;
-            cout << " Password Updated!" << endl;
+            cout << "-------PASSWORD UPDATED!-------" << endl;
         }
     }
     // unlock function
     void unlock()
     {
         string ps;
+        setColor(9);
         cout << "╔══════════════════════════════════════════════════╗\n";
-        cout << "║                  UNLOCK CONTACT                  ║\n";
+        cout << "║";
+
+        // White heading
+        setColor(15);
+        cout << "                   UNLOCK CONTACTS             ";
+
+        // Blue border
+        setColor(9);
+        cout << "   ║\n";
         cout << "╚══════════════════════════════════════════════════╝\n";
+        setColor(15);
         cout << " Enter Password to Proceed: ";
         cin >> ps;
+        cout << endl;
         ifstream fin("password.txt");
         string pass;
         getline(fin, pass);
@@ -1557,19 +1663,24 @@ public:
             system("cls");
             for (int i = 0; i < contacts.size(); i++)
             {
-                if (contacts[i].phone == ph)
+                if (contacts[i].phone == ph && contacts[i].lock)
                 {
                     contacts[i].lock = false;
                     savedata();
                     cout << endl;
-                    cout << "Removed from Locked List" << endl;
+                    cout << "------Removed from Locked List----" << endl;
+                    return;
+                }
+                else if (contacts[i].phone == ph)
+                {
+                    cout << "-----Contact is Not in Locked list-----" << endl;
                     return;
                 }
             }
         }
         else
         {
-            cout << "Incorrect password.";
+            cout << "Incorrect password." << endl;
         }
         cout << endl;
         cout << " Contact Not Found" << endl;
@@ -1579,19 +1690,35 @@ public:
     void unblock()
     {
         string ph;
+        setColor(9);
         cout << "╔══════════════════════════════════════════════════╗\n";
-        cout << "║                  UNBLOCK CONTACT                 ║\n";
+        cout << "║";
+
+        // White heading
+        setColor(15);
+        cout << "                   UNBLOCK CONTACTS             ";
+
+        // Blue border
+        setColor(9);
+        cout << "  ║\n";
         cout << "╚══════════════════════════════════════════════════╝\n";
+        setColor(15);
         cout << " Enter Phone Number to Unblock: ";
         cin >> ph;
+        cout << endl;
         for (int i = 0; i < contacts.size(); i++)
         {
-            if (contacts[i].phone == ph)
+            if (contacts[i].phone == ph && contacts[i].block)
             {
                 contacts[i].block = false;
                 savedata();
-                cout << endl;
-                cout << "Removed from Blocked List" << endl;
+
+                cout << "------Removed from Blocked List------" << endl;
+                return;
+            }
+            else if (contacts[i].phone == ph)
+            {
+                cout << "-----Contact is Not in Blocked list-----" << endl;
                 return;
             }
         }
@@ -1603,24 +1730,41 @@ public:
     void unfav()
     {
         string ph;
+        setColor(9);
         cout << "╔══════════════════════════════════════════════════╗\n";
-        cout << "║               REMOVE FROM FAVOURITES             ║\n";
+        cout << "║";
+
+        // White heading
+        setColor(15);
+        cout << "                  REMOVE FAVOURITES             ";
+
+        // Blue border
+        setColor(9);
+        cout << "  ║\n";
         cout << "╚══════════════════════════════════════════════════╝\n";
+        setColor(15);
         cout << " Enter Phone Number: ";
         cin >> ph;
+        cout << endl;
         for (int i = 0; i < contacts.size(); i++)
         {
-            if (contacts[i].phone == ph)
+            if (contacts[i].phone == ph && contacts[i].fav)
             {
                 contacts[i].fav = false;
                 savedata();
-                cout << endl;
-                cout << "Removed from Favorites List" << endl;
+                cout << "---------REMOVED FROM FAVOURITES LIST-------" << endl;
+
+                return;
+            }
+            else if (contacts[i].phone == ph)
+            {
+                cout << "-----Contact is Not in Favourites-----" << endl;
                 return;
             }
         }
+
         cout << endl;
-        cout << " Contact Not Found" << endl;
+        cout << "------Contact Not Found------" << endl;
         return;
     }
 };
@@ -1648,18 +1792,16 @@ int main()
         menuLine("4.  Update Contact");
         menuLine("5.  Search Contact");
         menuLine("6.  Sort Contact");
-        menuLine("7.  Save Contact to File");
-        menuLine("8.  Load Contact from File");
-        menuLine("9.  Add to Favourites");
-        menuLine("10. Show Favourites");
-        menuLine("11. Block Contact");
-        menuLine("12. Display All Block Contact");
-        menuLine("13. Lock Contact");
-        menuLine("14. Display Locked Contact");
-        menuLine("15. Update Password");
-        menuLine("16. Remove from favorites");
-        menuLine("17. Unblock Number");
-        menuLine("18. Unlock Number");
+        menuLine("7.  Add to Favourites");
+        menuLine("8. Show Favourites");
+        menuLine("9. Block Contact");
+        menuLine("10. Display All Block Contact");
+        menuLine("11. Lock Contact");
+        menuLine("12. Display Locked Contact");
+        menuLine("13. Update Password");
+        menuLine("14. Remove from favorites");
+        menuLine("15. Unblock Number");
+        menuLine("16. Unlock Number");
         menuLine("0.  Exit");
         setColor(14);
         cout << " Enter Choice: ";
@@ -1872,43 +2014,43 @@ int main()
         // {
         //     obj.loaddata();
         // }
-        else if (choice == 9)
+        else if (choice == 7)
         {
             obj.addfav();
         }
-        else if (choice == 10)
+        else if (choice == 8)
         {
             obj.showfav();
         }
-        else if (choice == 11)
+        else if (choice == 9)
         {
             obj.blocked();
         }
-        else if (choice == 12)
+        else if (choice == 10)
         {
             obj.showblock();
         }
-        else if (choice == 13)
+        else if (choice == 11)
         {
             obj.lockcontact();
         }
-        else if (choice == 14)
+        else if (choice == 12)
         {
             obj.showlock();
         }
-        else if (choice == 15)
+        else if (choice == 13)
         {
             obj.updatePassword();
         }
-        else if (choice == 16)
+        else if (choice == 14)
         {
             obj.unfav();
         }
-        else if (choice == 17)
+        else if (choice == 15)
         {
             obj.unblock();
         }
-        else if (choice == 18)
+        else if (choice == 16)
         {
             obj.unlock();
         }

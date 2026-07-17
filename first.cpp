@@ -402,6 +402,7 @@ public:
         string n;
         bool found = false;
         cout << endl;
+        system("cls");
         setColor(9);
         cout << "╔══════════════════════════════════════════════════╗\n";
         cout << "║";
@@ -525,7 +526,7 @@ public:
         // cout << " Enter Phone Number to Update: ";
         // cin >> ph;
 
-        system("cls");
+        // system("cls");
 
         setColor(9);
         cout << "╔══════════════════════════════════════════════════╗\n";
@@ -746,11 +747,11 @@ public:
 
                 // White heading
                 setColor(15);
-                cout << "                      NEW EMAIL         ";
+                cout << "                   NEW EMAIL         ";
 
                 // Blue border
                 setColor(9);
-                cout << "          ║\n";
+                cout << "             ║\n";
                 cout << "╚══════════════════════════════════════════════════╝\n";
 
                 setColor(15);
@@ -812,7 +813,7 @@ public:
         cout << "╚══════════════════════════════════════════════════╝\n";
 
         setColor(15);
-        cout << " Enter Name: ";
+        cout << " Enter Name of Contact: ";
         getline(cin >> ws, name);
         cout << " Enter Name of old City: ";
         getline(cin >> ws, ph);
@@ -1764,7 +1765,7 @@ int main()
             setColor(9);
             cout << "║";
             setColor(15);
-            cout << setw(44) << left << "          CHOOSE AN OPTION";
+            cout << setw(44) << left << "             CHOOSE AN OPTION";
             setColor(9);
             cout << "  ║\n";
 

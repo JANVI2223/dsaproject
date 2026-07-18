@@ -1277,6 +1277,11 @@ public:
         {
             if (contacts[i].phone == ph)
             {
+                 if (contacts[i].block)
+                {
+                    cout << "Already in Blocked List." << endl;
+                    return;
+                }
                 contacts[i].block = true;
                 savedata();
                 cout << endl;
@@ -1309,7 +1314,7 @@ public:
         int n = contacts.size();
         for (int i = 0; i < n; i++)
         {
-            if (contacts[i].block == true)
+            if (contacts[i].block == true && !contacts[i].lock)
             {
                 cout << endl;
                 setColor(9);
@@ -1441,6 +1446,11 @@ public:
         {
             if (contacts[i].phone == ph)
             {
+                 if (contacts[i].lock)
+                {
+                    cout << "Already in locked List." << endl;
+                    return;
+                }
                 contacts[i].lock = true;
                 savedata();
                 cout << endl;

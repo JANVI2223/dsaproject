@@ -61,7 +61,14 @@ public:
 
         cout << " Enter Phone Number : ";
         cin >> c.phone;
-
+        for (int i = 0; i < contacts.size(); i++)
+        {
+            if (contacts[i].phone == c.phone)
+            {
+                cout << "already exist";
+                return;
+            }
+        }
         cout << " Enter Email        : ";
         cin >> c.email;
 
@@ -1277,7 +1284,7 @@ public:
         {
             if (contacts[i].phone == ph)
             {
-                 if (contacts[i].block)
+                if (contacts[i].block)
                 {
                     cout << "Already in Blocked List." << endl;
                     return;
@@ -1446,7 +1453,7 @@ public:
         {
             if (contacts[i].phone == ph)
             {
-                 if (contacts[i].lock)
+                if (contacts[i].lock)
                 {
                     cout << "Already in locked List." << endl;
                     return;

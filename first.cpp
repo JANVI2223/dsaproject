@@ -1793,8 +1793,8 @@ int main()
         menuLine("5.  Search Contact");
         menuLine("6.  Sort Contact");
         menuLine("7.  Add to Favourites");
-        menuLine("8. Show Favourites");
-        menuLine("9. Block Contact");
+        menuLine("8.  Show Favourites");
+        menuLine("9.  Block Contact");
         menuLine("10. Display All Block Contact");
         menuLine("11. Lock Contact");
         menuLine("12. Display Locked Contact");

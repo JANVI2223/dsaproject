@@ -1408,31 +1408,52 @@ public:
         }
     }
 
+    // CREATE PASSWORD
+    void createpass()
+    {
+        ifstream fin("password.txt");
+        string pass;
+        getline(fin, pass);
+        if (pass.empty())
+        {
+            cout << " Enter Password: ";
+            cin >> pass;
+            savePassword(pass);
+            cout << endl;
+        }
+        else{
+            cout<<"password already created";
+        }
+    }
+
     // LOCK CONTACT
 
     void lockcontact()
     {
-        string pass;
-        string ph;
+        string ph, ps;
         system("cls");
         cout << endl;
-        setColor(9);
-        cout << "╔══════════════════════════════════════════════════╗\n";
-        cout << "║";
+        // setColor(9);
+        // cout << "╔══════════════════════════════════════════════════╗\n";
+        // cout << "║";
 
-        // White heading
-        setColor(15);
-        cout << "                   SET PASSWORD       ";
+        // // White heading
+        // setColor(15);
+        // cout << "                   SET PASSWORD       ";
 
-        // Blue border
-        setColor(9);
-        cout << "            ║\n";
-        cout << "╚══════════════════════════════════════════════════╝\n";
-        setColor(15);
+        // // Blue border
+        // setColor(9);
+        // cout << "            ║\n";
+        // cout << "╚══════════════════════════════════════════════════╝\n";
+        // setColor(15);
         cout << " Enter Password: ";
-        cin >> pass;
-        savePassword(pass);
+        cin >> ps;
         cout << endl;
+        ifstream fin("password.txt");
+        string pass;
+        getline(fin, pass);
+        if (pass == ps)
+        {
         setColor(9);
         cout << "╔══════════════════════════════════════════════════╗\n";
         cout << "║";
@@ -1468,6 +1489,10 @@ public:
         cout << endl;
         cout << "-------Contact Not Found---------" << endl;
         return;
+    }
+    else{
+        cout<<"incorrect password";
+    }
     }
 
     // TO SAVE THE PASSWORD
@@ -1815,6 +1840,7 @@ int main()
         menuLine("10. Display All Block Contact");
         menuLine("11. Lock Contact");
         menuLine("12. Display Locked Contact");
+         menuLine("17. Unlock Number");
         menuLine("13. Update Password");
         menuLine("14. Remove from favorites");
         menuLine("15. Unblock Number");
@@ -2054,6 +2080,10 @@ int main()
         else if (choice == 12)
         {
             obj.showlock();
+        }
+        else if (choice == 17)
+        {
+            obj.createpass();
         }
         else if (choice == 13)
         {

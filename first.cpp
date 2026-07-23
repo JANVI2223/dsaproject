@@ -1840,11 +1840,11 @@ int main()
         menuLine("10. Display All Block Contact");
         menuLine("11. Lock Contact");
         menuLine("12. Display Locked Contact");
-         menuLine("17. Unlock Number");
-        menuLine("13. Update Password");
-        menuLine("14. Remove from favorites");
-        menuLine("15. Unblock Number");
-        menuLine("16. Unlock Number");
+         menuLine("13. Unlock Number");
+        menuLine("14. Update Password");
+        menuLine("15. Remove from favorites");
+        menuLine("16. Unblock Number");
+        menuLine("17. Unlock Number");
         menuLine("0.  Exit");
         setColor(14);
         cout << " Enter Choice: ";
